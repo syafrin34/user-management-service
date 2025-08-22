@@ -7,5 +7,6 @@ git branch -M main
 git remote add origin git@github.com:syafrin34/order-service.git
 git push -u origin main
 
+
 <+ create repo di github +>
 ini app microservice yang bagian dari aplikasi e-commerce falsh sale
