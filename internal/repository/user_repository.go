@@ -16,7 +16,7 @@ func NewUserRepository()*UserRepository{
 
 var users = map[int]*entity.User{
 	1:{ID: 1, Username: "user1", Email: "user1@gmail.com",Password: "12345"},
-	2:{ID: 1, Username: "user2", Email: "user2@gmail.com",Password: "12345"},
+	2:{ID: 2, Username: "user2", Email: "user2@gmail.com",Password: "12345"},
 }
 func (u *UserRepository)GetUserByID(id int)(*entity.User, error){
 	user, ok := users[id]

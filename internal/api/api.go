@@ -60,7 +60,7 @@ func (u *UserHandler)Login(c echo.Context)error{
 	}{}
 
 	if err := c.Bind(&login);err != nil {
-		return c.JSON(400, map[string]string{"error":"Invalid request payload"})
+		return c.JSON(400, map[string]string{"error":err.Error(), })
 	}
 	user, err := u.userService.Login(login.Email,login.Password)
 	if err != nil {
