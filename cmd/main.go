@@ -1,6 +1,7 @@
 package main
 
 import (
+	"database/sql"
 	"time"
 	"user-management-service/internal/api"
 	"user-management-service/internal/repository"
@@ -10,8 +11,19 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 	"golang.org/x/time/rate"
 )
+func connectDB()(*sql.DB, error){
+	db, err := sql.Open("mysql", "root:@tcp(127.0.0.1:3306)/userdb")
+	if err != nil {
+		return nil, err
+	}
+	return db, nil
+}
 func main(){
-	userRepo := repository.NewUserRepository()
+	db, err := connectDB()
+	if err != nil {
+		panic(err)
+	}
+	userRepo := repository.NewUserRepository(db)
 	userService := service.NewUserService(*userRepo)
 	userHandler := api.NewUserHandler(*userService)
 
